@@ -5,15 +5,35 @@ const assetForm = document.getElementById('asset-form');
 const portfolioRows = document.getElementById('portfolio-rows');
 
 // 2. Listen for User Adding Assets
-assetForm.addEventListener('submit', (e) => {
+assetForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
+    const ticker = document.getElementById('ticker').value.toUpperCase();
+    const shares = parseFloat(document.getElementById('shares').value);
+    const buyPrice = parseFloat(document.getElementById('buy-price').value);
+
+    let currentPrice = buyPrice;
+
+    try {
+        const response = await fetch(
+            `https://finnhub.io/api/v1/quote?symbol=${ticker}&token=${API_KEY}`
+        );
+
+        const data = await response.json();
+
+        if (data.c) {
+            currentPrice = data.c;
+        }
+    } catch (error) {
+        console.error("Couldn't fetch stock price:", error);
+    }
+
     const newAsset = {
         id: Date.now(),
-        ticker: document.getElementById('ticker').value.toUpperCase(),
-        shares: parseFloat(document.getElementById('shares').value),
-        buyPrice: parseFloat(document.getElementById('buy-price').value),
-        currentPrice: parseFloat(document.getElementById('buy-price').value) // Fallback until API loads
+        ticker,
+        shares,
+        buyPrice,
+        currentPrice
     };
 
     portfolio.push(newAsset);
