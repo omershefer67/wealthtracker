@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>📈 WealthTracker by Omer Shefer</h1>
+    </header>
+
+    <main class="container">
+        <section class="summary-cards">
+            <div class="card">
+                <h3>Total Value</h3>
+                <p id="total-value">$0.00</p>
+            </div>
+            <div class="card">
+                <h3>Total Gain / Loss</h3>
+                <p id="total-gain" class="neutral">$0.00 (0%)</p>
+            </div>
+        </section>∏
+
+        <section class="form-section">
+            <h3>Add Asset</h3>
+            <form id="asset-form">
+                <input type="text" id="ticker" placeholder="Ticker (e.g., AAPL)" required>
+                <input type="number" id="shares" placeholder="Shares Owned" step="any" required>
+                <input type="number" id="buy-price" placeholder="Avg Buy Price ($)" step="any" required>
+                <button type="submit">Add to Portfolio</button>
+            </form>
+        </section>
+
+        <section class="table-section">
+            <h3>Your Holdings</h3>
+            <table id="portfolio-table">
+                <thead>
+                    <tr>
+                        <th>Asset</th>
+                        <th>Shares</th>
+                        <th>Avg Buy Price</th>
+                        <th>Current Price</th>
+                        <th>Total Value</th>
+                        <th>Gain / Loss</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="portfolio-rows">
+                    </tbody>
+            </table>
+        </section>
+
+        <section class="news-section">
+            <h3>Market News</h3>
+            <div id="news-container">Loading latest news...</div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
